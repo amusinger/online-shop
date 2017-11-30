@@ -22,14 +22,9 @@ public class Order {
     @Column(name="product_id", nullable = false)
     private Long productID;
     
-    @Column(name="payment", nullable = true)
-    private String payment;
-    
     @Column(name="address", nullable = true)
     private String address;
-    
-    @Column(name="status", nullable = true)
-    private String status;
+  
 
 	public String getAddress() {
 		return address;
@@ -37,14 +32,6 @@ public class Order {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public Long getId() {
@@ -69,14 +56,6 @@ public class Order {
 
 	public void setProductID(Long productID) {
 		this.productID = productID;
-	}
-
-	public String getPayment() {
-		return payment;
-	}
-
-	public void setPayment(String payment) {
-		this.payment = payment;
 	}
 
 }

@@ -37,27 +37,30 @@ public class OrderBean implements IOrderBean{
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/buy/{id}")
-    public void order(@PathParam("id") Long id) {
+    @Path("/buy/{id}/address/{address}")
+    public void order(@PathParam("id") Long id, @PathParam("address") String address) {
     		cartBean.removeFromCart(id);
     		Query q = entityManager.createQuery("select x from User x where x.logged=true");
     		User res = (User) q.getSingleResult();
     		Order or = new Order();
 		or.setProductID(id);
 		or.setUserID(res.getId());
-		entityManager.persist(or);       
+		or.setAddress(address);
+		System.out.println(or);
+		entityManager.persist(or); 
+		
     }
     
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/buy/all")
-	public List<OrderDTO> getOrder() {
+    @Path("/view/all")
+	public List<OrderDTO> viewOrders() {
 		// TODO Auto-generated method stub
 		Query q1 = entityManager.createQuery("select x from User x where x.logged=true");
 		User res = (User) q1.getSingleResult();
 		System.out.println(res);
-		Query q = entityManager.createQuery("select y from Order y where y.useriD=:id");
+		Query q = entityManager.createQuery("select y from Order y where y.userID=:id");
 		q.setParameter("id", res.getId());
 		
 		ArrayList<OrderDTO> prodsInOrder = new ArrayList<OrderDTO>(); 
@@ -67,10 +70,10 @@ public class OrderBean implements IOrderBean{
 			product.setId(order.getId());
 			product.setProduct_id(order.getProductID());
 			product.setUser_id(order.getUserID());
-			product.setPayment(order.getPayment());
 			product.setAddress(order.getAddress());
 			prodsInOrder.add(product);
 		}
 		return prodsInOrder;
 	}
+
 }

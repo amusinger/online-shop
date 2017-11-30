@@ -4,9 +4,8 @@ public class OrderDTO {
 	private Long id;
     private Long product_id;
 	private Long user_id;
-    private String payment;
     private String address;
-    private String status;
+    
 	public Long getId() {
 		return id;
 	}
@@ -25,22 +24,10 @@ public class OrderDTO {
 	public void setUser_id(Long user_id) {
 		this.user_id = user_id;
 	}
-	public String getPayment() {
-		return payment;
-	}
-	public void setPayment(String payment) {
-		this.payment = payment;
-	}
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
 	}
 }
