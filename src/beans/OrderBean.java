@@ -9,21 +9,13 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import dto.OrderDTO;
-import dto.ProductDTO;
-import entities.Cart;
 import entities.Order;
 import entities.User;
 
 @Stateless
 @LocalBean
-@Path("/orders")
 public class OrderBean implements IOrderBean{
 		
     @EJB
@@ -35,10 +27,8 @@ public class OrderBean implements IOrderBean{
     @PersistenceContext(name="entityManager") 
     EntityManager entityManager;
     
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/buy/{id}/address/{address}")
-    public void order(@PathParam("id") Long id, @PathParam("address") String address) {
+
+    public void order(Long id, String address) {
     		cartBean.removeFromCart(id);
     		Query q = entityManager.createQuery("select x from User x where x.logged=true");
     		User res = (User) q.getSingleResult();
@@ -52,9 +42,7 @@ public class OrderBean implements IOrderBean{
     }
     
     
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/view/all")
+ 
 	public List<OrderDTO> viewOrders() {
 		// TODO Auto-generated method stub
 		Query q1 = entityManager.createQuery("select x from User x where x.logged=true");

@@ -21,16 +21,13 @@ import entities.Product;
 
 @Stateless
 @LocalBean
-@Path("/products")
 public class ProductBean implements IProductBean{
 
 
     @PersistenceContext(name="entityManager") 
     EntityManager entityManager;
     
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/view/all")
+  
 	@Override
 	public List<ProductDTO> getAllProducts() {
 		// TODO Auto-generated method stub
@@ -48,11 +45,9 @@ public class ProductBean implements IProductBean{
 		return result;
 	}
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("view/{id}")
+  
 	@Override
-	public ProductDTO getProductByID(@PathParam("id") Long id) {
+	public ProductDTO getProductByID(Long id) {
 		// TODO Auto-generated method stub
   		Query q = entityManager.createQuery("select x from Product x where x.id=:id");
 		q.setParameter("id", id);
@@ -66,9 +61,7 @@ public class ProductBean implements IProductBean{
 		return prod;
 	}
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/search/{name}")
+
 	@Override
 	public List<ProductDTO> searchProductByName(String name) {
 		// TODO Auto-generated method stub
@@ -88,9 +81,7 @@ public class ProductBean implements IProductBean{
 		return prods;
 	}
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/filter/{min}/{max}")
+ 
 	@Override
 	public List<ProductDTO> filterByPrice(Long minPrice, Long maxPrice) {
 		if (minPrice == null) {

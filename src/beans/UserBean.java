@@ -16,17 +16,13 @@ import entities.User;
 
 @Stateless
 @LocalBean
-@Path("/profile")
 public class UserBean implements IUserBean{
 
 	@PersistenceContext(unitName="entityManager")
 	private EntityManager entityManager;
 
-    @Produces(MediaType.APPLICATION_JSON)
-    @GET
-    @Path("/login/{email}/password/{password}")
 	@Override
-	public UserDTO login(@PathParam("email") String email,  @PathParam("password")String password) {
+	public UserDTO login(String email, String password) {
 		Query q = entityManager.createQuery("select x from User x where x.email=:email and x.password=:password");
 		q.setParameter("email", email);
 		q.setParameter("password", password);
@@ -41,11 +37,9 @@ public class UserBean implements IUserBean{
 		return userDTO;
 	}
     
-    @Produces(MediaType.APPLICATION_JSON)
-    @GET
-    @Path("/register/{email}/password/{password}")
+
 	@Override
-	public void register(@PathParam("email") String email,  @PathParam("password")String password) {
+	public void register(String email,  String password) {
 //		Query q = entityManager.createQuery
 //				("insert into users (email, password) "
 //						+ "values(email, password)");
@@ -64,10 +58,7 @@ public class UserBean implements IUserBean{
     
 
 	@Override
-	@Produces(MediaType.APPLICATION_JSON)
-    @GET
-    @Path("/logout/{email}/")
-	public void logout(@PathParam("email") String email) {
+	public void logout(String email) {
 		// TODO Auto-generated method stub
 		Query q = entityManager.createQuery("select x from User x where x.email=:email");
 		q.setParameter("email", email);

@@ -1,6 +1,5 @@
 package beans;
 
-import javax.ws.rs.PathParam;
 
 import dto.UserDTO;
 
