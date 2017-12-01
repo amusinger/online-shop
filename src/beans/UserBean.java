@@ -1,17 +1,17 @@
 package beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
+import dto.OrderDTO;
 import dto.UserDTO;
+import entities.Order;
 import entities.User;
 
 @Stateless
@@ -23,6 +23,20 @@ public class UserBean implements IUserBean{
 
 	@Override
 	public UserDTO login(String email, String password) {
+		
+		Query q1 = entityManager.createQuery("select x from User x where x.logged=true");
+		List<User> resultList = (List<User>)q1.getResultList();
+		for (User u1 : resultList) {
+			u1.setLogged(null);
+			entityManager.persist(u1);
+		}
+//		UserDTO userDTO1 = new UserDTO();
+//		userDTO1.setId(u1.getId());
+//		userDTO1.setEmail(u1.getEmail());
+//		userDTO1.setName(u1.getName());
+//		userDTO1.setLogged(false);
+//		entityManager.persist(u1);
+		
 		Query q = entityManager.createQuery("select x from User x where x.email=:email and x.password=:password");
 		q.setParameter("email", email);
 		q.setParameter("password", password);
@@ -37,7 +51,25 @@ public class UserBean implements IUserBean{
 		return userDTO;
 	}
     
-
+	
+	public UserDTO isOnline() {
+		Query q1 = entityManager.createQuery("select x from User x where x.logged=true");
+		
+		ArrayList<UserDTO> onlineUsers = new ArrayList<UserDTO>(); 
+		
+		List<User> resultList = (List<User>)q1.getResultList();
+		for (User u1 : resultList) {
+		
+			UserDTO userDTO1 = new UserDTO();
+			userDTO1.setId(u1.getId());
+			userDTO1.setEmail(u1.getEmail());
+			userDTO1.setName(u1.getName());
+			userDTO1.setLogged(u1.getLogged());
+			onlineUsers.add(userDTO1);
+		}
+		
+		return onlineUsers.get(0);
+	}
 	@Override
 	public void register(String email,  String password) {
 //		Query q = entityManager.createQuery
@@ -63,11 +95,12 @@ public class UserBean implements IUserBean{
 		Query q = entityManager.createQuery("select x from User x where x.email=:email");
 		q.setParameter("email", email);
 		User u = (User) q.getSingleResult();
-		UserDTO userDTO = new UserDTO();
-		userDTO.setId(u.getId());
-		userDTO.setEmail(u.getEmail());
-		userDTO.setName(u.getName());
-		userDTO.setLogged(false);
+		u.setLogged(null);
+//		UserDTO userDTO = new UserDTO();
+//		userDTO.setId(u.getId());
+//		userDTO.setEmail(u.getEmail());
+//		userDTO.setName(u.getName());
+//		userDTO.setLogged(false);
 		entityManager.persist(u);
 	}
 
