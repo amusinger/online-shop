@@ -6,14 +6,28 @@ import javax.ejb.EJB;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import beans.CartBean;
+import beans.OrderBean;
 import beans.ProductBean;
+import beans.UserBean;
+import dto.OrderDTO;
 import dto.ProductDTO;
+import dto.UserDTO;
 
 @WebService(serviceName="ShopWebService")
 public class ShopWebService {
 
 	@EJB 
 	ProductBean productBean;
+	
+	@EJB
+	CartBean cartBean;
+	
+	@EJB
+	UserBean userBean;
+	
+	@EJB
+	OrderBean orderBean;
 	
 	@WebMethod
     public List<ProductDTO> getAllProducts() {
@@ -34,5 +48,53 @@ public class ShopWebService {
 	public List<ProductDTO> filterByPrice(Long minPrice, Long maxPrice) {
 		return productBean.filterByPrice(minPrice, maxPrice);
 	}
+	
+	@WebMethod
+	public UserDTO login(String email, String password) {
+		return userBean.login(email, password);
+	}
+	
+	@WebMethod
+	public UserDTO isOnline() {
+		return userBean.isOnline();
+	}
+	
+	@WebMethod
+	public void register(String email,  String password) {
+		userBean.register(email, password);
+	}
+	
+	@WebMethod
+	public void logout(String email) {
+		userBean.logout(email);
+	}
+	
+	@WebMethod
+	public void order(Long id, String address) {
+		orderBean.order(id, address);
+	}
+	
+	@WebMethod
+	public List<OrderDTO> viewOrders() {
+		return orderBean.viewOrders();
+				
+	}
+	
+	@WebMethod
+	public void addToCart(Long id) {
+		cartBean.addToCart(id);
+	}
+	
+	
+	@WebMethod
+	public List<ProductDTO> getCart() {
+		return cartBean.getCart();
+	}
+	
+	@WebMethod
+	public void removeFromCart(Long id) {
+		cartBean.removeFromCart(id);
+	}
+	
 	
 }

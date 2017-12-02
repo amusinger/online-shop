@@ -97,11 +97,6 @@ public class OrderBean implements IOrderBean{
 
 	public void sendOrderConfirmationMail(String email, String subject, String text) throws AddressException, MessagingException{
 		System.out.println(email);
-//		MailEvent event = new MailEvent();
-//		event.setTo(email); //PLEASE SWTICH THIS VALUE BY AN EMAIL OF YOUR OWN
-//		event.setSubject(subject);
-//		event.setMessage(text);
-//		eventProducer.fire(event);
 		Message msg = new MimeMessage(mailSession);
         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
         msg.setSubject(subject);
