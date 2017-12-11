@@ -31,6 +31,13 @@ public class CartBean implements ICartBean{
     		Cart cart = checkUserAndCart(id);
 		entityManager.persist(cart);   				
 	}
+	
+
+	public Long countCart() {
+		Query query = entityManager.createQuery("SELECT COUNT(p) FROM Cart p " ); 
+		Long count = (Long) query.getSingleResult();
+		return count;
+	}
 
 	private Cart checkUserAndCart(Long id) {
 		// TODO Auto-generated method stub

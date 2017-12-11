@@ -11,8 +11,20 @@
 </head>
 <body>
 	<%@include file="header.jsp" %>
-	<div class="container">
+		<div class="container">
 		<h3>Categories</h3>
+		
+			
+	<div class="prods">
+	<c:forEach var="a" items="${categories}">
+		<div class="card" style="margin-top:10px;margin-bottom:10px;">
+		  <div class="card-header">${a.categoryName}</div>
+		  <div class="card-body">
+		    <h4 class="card-title">id: ${a.id}</h4>
+		 </div>
+		</div>
+	</c:forEach>
+	</div>
 	</div>
 </body>
 </html>

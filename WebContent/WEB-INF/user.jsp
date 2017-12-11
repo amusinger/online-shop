@@ -11,6 +11,23 @@
 </head>
 <body>
 	<%@include file="header.jsp" %>
-	<h3>Users</h3>
+	
+	<div class="container">
+		<h3>Users</h3>
+	
+	
+		<div class="prods">
+	<c:forEach var="a" items="${users}">
+		<div class="card" style="margin-top:10px;margin-bottom:10px;">
+		  <div class="card-header">${a.email}</div>
+		  <div class="card-body">
+		    <h4 class="card-title">${a.password}</h4>
+		    <p class="card-text">${a.name}</p>
+		 </div>
+		</div>
+	</c:forEach>
+	</div>
+	</div>
+
 </body>
 </html>

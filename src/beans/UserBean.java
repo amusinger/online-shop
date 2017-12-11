@@ -10,8 +10,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import dto.OrderDTO;
+import dto.ProductDTO;
 import dto.UserDTO;
 import entities.Order;
+import entities.Product;
 import entities.User;
 
 @Stateless
@@ -21,6 +23,21 @@ public class UserBean implements IUserBean{
 	@PersistenceContext(unitName="entityManager")
 	private EntityManager entityManager;
 
+	
+	public List<UserDTO> getAllUsers() {		
+		List<User> users = (List<User>)entityManager.createQuery("select p from User p", User.class).getResultList();
+		ArrayList<UserDTO> result = new ArrayList<UserDTO>();
+		for(User u : users) {
+			UserDTO user = new UserDTO();
+			user.setId(u.getId());
+			user.setName(u.getName());
+			user.setEmail(u.getEmail());
+			user.setPassword(u.getPassword());
+			result.add(user);
+		}
+		return result;
+	}
+	
 	@Override
 	public UserDTO login(String email, String password) {
 		
@@ -70,6 +87,7 @@ public class UserBean implements IUserBean{
 		
 		return onlineUsers.get(0);
 	}
+	
 	@Override
 	public void register(String email,  String password) {
 //		Query q = entityManager.createQuery

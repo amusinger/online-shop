@@ -1,5 +1,7 @@
 package rest;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -25,6 +27,10 @@ public class UserRest {
 	public UserDTO isOnline() {
     		return userBean.isOnline();
     }
+    
+    public List<UserDTO> getUsers() {
+		return userBean.getAllUsers();
+}
     
     @Produces(MediaType.APPLICATION_JSON)
     @GET

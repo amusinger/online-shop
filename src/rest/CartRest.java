@@ -27,6 +27,13 @@ public class CartRest {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("/count/")
+	public Long countCart() {
+    		return cartBean.countCart();
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/checkout")
 	public List<ProductDTO> getCart() {
     		return cartBean.getCart();

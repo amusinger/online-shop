@@ -60,8 +60,9 @@ public class ProductBean implements IProductBean{
 	@Override
 	public List<ProductDTO> searchProductByName(String name) {
 		// TODO Auto-generated method stub
-		Query q = entityManager.createQuery("select x from Product x where x.title=:name");
-		q.setParameter("name", name);
+		Query q = entityManager.createQuery("select x from Product x where (lower(x.title) LIKE :name OR lower(x.description) LIKE :keyword)");
+		q.setParameter("name", "%" + name.toLowerCase() + "%");
+		q.setParameter("keyword", "%" + name.toLowerCase() + "%");
 		List<Product> res = (List<Product>)q.getResultList();
 		ArrayList<ProductDTO> prods = new ArrayList<ProductDTO>();
 		for(Product r : res) {
