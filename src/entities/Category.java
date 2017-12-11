@@ -10,16 +10,41 @@ import javax.persistence.Table;
 @Entity
 @Table(name="categories")
 public class Category{
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", unique=true, nullable = false)
     private Long id;
     
-    @Column(name="user_id", nullable = false)
-    private Long useriD;
+    @Column(name="name", nullable = false)
+    private String name;
     
-    @Column(name="product_id", nullable = false)
-    private Long productID;
+//    @Column(name="product_id", nullable = false)
+//    private Long productID;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+//	public Long getProductID() {
+//		return productID;
+//	}
+//
+//	public void setProductID(Long productID) {
+//		this.productID = productID;
+//	}
+
+
 
 }

@@ -22,6 +22,30 @@ public class Product {
     
 	@Column(name="price", nullable = false)
     private Long price;
+	
+	@Column(name="category_id", nullable = true)
+    private Long categoryID;
+	
+//	@Column(name="quantity", nullable = false)
+//    private Long quantity;
+//	
+//	public Long getQuantity() {
+//		return quantity;
+//	}
+//
+//	public void setQuantity(Long quantity) {
+//		this.quantity = quantity;
+//	}
+
+	public Long getCategoryID() {
+		return categoryID;
+	}
+
+	public void setCategoryID(Long categoryID) {
+		this.categoryID = categoryID;
+	}
+
+
     
     public String getImage() {
 		return image;

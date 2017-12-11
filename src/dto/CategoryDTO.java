@@ -3,7 +3,7 @@ package dto;
 public class CategoryDTO {
 	private Long id;
     private String categoryName;
-	private Long productID;
+	//private Long productID;
 	
 	public Long getId() {
 		return id;
@@ -17,10 +17,10 @@ public class CategoryDTO {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-	public Long getProductID() {
-		return productID;
-	}
-	public void setProductID(Long productID) {
-		this.productID = productID;
-	}
+//	public Long getProductID() {
+//		return productID;
+//	}
+//	public void setProductID(Long productID) {
+//		this.productID = productID;
+//	}
 }

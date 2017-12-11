@@ -33,6 +33,7 @@ public class ProductBean implements IProductBean{
 			product.setDescription(prod.getDescription());
 			product.setPrice(prod.getPrice());
 			product.setImage(prod.getImage());
+			//prod.setQuantity(prod.getQuantity());
 			result.add(product);
 		}
 		return result;
@@ -51,6 +52,7 @@ public class ProductBean implements IProductBean{
 		prod.setPrice(res.getPrice());
 		prod.setDescription(res.getDescription());
 		prod.setImage(res.getImage());
+		//prod.setQuantity(res.getQuantity());
 		return prod;
 	}
 
@@ -69,6 +71,7 @@ public class ProductBean implements IProductBean{
 			prod.setDescription(r.getDescription());
 			prod.setPrice(r.getPrice());
 			prod.setImage(r.getImage());
+			//prod.setQuantity(r.getQuantity());
 			prods.add(prod);
 		}
 		return prods;
@@ -95,6 +98,7 @@ public class ProductBean implements IProductBean{
 			prod.setDescription(r.getDescription());
 			prod.setPrice(r.getPrice());
 			prod.setImage(r.getImage());
+			//prod.setQuantity(r.getQuantity());
 			prods.add(prod);
 		}
 		return prods;
