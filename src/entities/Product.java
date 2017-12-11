@@ -26,6 +26,9 @@ public class Product {
 	@Column(name="category_id", nullable = true)
     private Long categoryID;
 	
+    @Column(name="label", nullable = true)
+    private String label;
+	
 //	@Column(name="quantity", nullable = false)
 //    private Long quantity;
 //	
@@ -36,6 +39,14 @@ public class Product {
 //	public void setQuantity(Long quantity) {
 //		this.quantity = quantity;
 //	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
 
 	public Long getCategoryID() {
 		return categoryID;

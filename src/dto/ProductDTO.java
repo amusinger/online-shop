@@ -9,6 +9,7 @@ public class ProductDTO {
     private String image;
     //private Long quantity;
     private Long categoryID;
+    private String label;
     
 	public Long getCategoryID() {
 		return categoryID;
@@ -52,4 +53,10 @@ public class ProductDTO {
 //	public void setQuantity(Long quantity) {
 //		this.quantity = quantity;
 //	}
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
 }
