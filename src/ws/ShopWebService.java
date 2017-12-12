@@ -55,7 +55,7 @@ public class ShopWebService {
 	}
 	
 	@WebMethod
-	public UserDTO isOnline() {
+	public List<UserDTO> isOnline() {
 		return userBean.isOnline();
 	}
 	
@@ -70,8 +70,8 @@ public class ShopWebService {
 	}
 	
 	@WebMethod
-	public void order(Long id, String address) {
-		orderBean.order(id, address);
+	public void order(Long id, String address, Long user_id) {
+		orderBean.order(id, address, user_id);
 	}
 	
 	@WebMethod
@@ -81,19 +81,19 @@ public class ShopWebService {
 	}
 	
 	@WebMethod
-	public void addToCart(Long id) {
-		cartBean.addToCart(id);
+	public void addToCart(Long id, Long user_id) {
+		cartBean.addToCart(id, user_id);
 	}
 	
 	
 	@WebMethod
-	public List<ProductDTO> getCart() {
-		return cartBean.getCart();
+	public List<ProductDTO> getCart(Long user_id) {
+		return cartBean.getCart(user_id);
 	}
 	
 	@WebMethod
-	public void removeFromCart(Long id) {
-		cartBean.removeFromCart(id);
+	public void removeFromCart(Long id, Long user_id) {
+		cartBean.removeFromCart(id, user_id);
 	}
 	
 	

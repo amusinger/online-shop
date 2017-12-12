@@ -47,9 +47,10 @@ public class OrderBean implements IOrderBean{
     EntityManager entityManager;
     
 
-    public void order(Long id, String address) {
-    		cartBean.removeFromCart(id);
-    		Query q = entityManager.createQuery("select x from User x where x.logged=true");
+    public void order(Long id, String address, Long user_id) {
+    		cartBean.removeFromCart(id, user_id);
+    		Query q = entityManager.createQuery("select x from User x where x.user_id=:user_id");
+    		q.setParameter("user_id", user_id);
     		User res = (User) q.getSingleResult();
     		Order or = new Order();
 		or.setProductID(id);

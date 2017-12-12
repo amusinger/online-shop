@@ -20,9 +20,9 @@ public class OrderRest {
 	
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/buy/{id}/address/{address}")
-    public void order(@PathParam("id") Long id, @PathParam("address") String address) {
-    		orderBean.order(id, address);
+    @Path("/buy/{id}/address/{address}/user/{user_id}")
+    public void order(@PathParam("id") Long id, @PathParam("address") String address, @PathParam("user_id") Long user_id) {
+    		orderBean.order(id, address, user_id);
     }
     
     

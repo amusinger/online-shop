@@ -6,8 +6,8 @@ import dto.ProductDTO;
 
 public interface ICartBean {
 	
-	public void addToCart(Long id);
-	public void removeFromCart(Long id);
-	public List<ProductDTO> getCart();
+	public void addToCart(Long id, Long user_id);
+	public void removeFromCart(Long id, Long user_id);
+	public List<ProductDTO> getCart(Long user_id);
 	
 }

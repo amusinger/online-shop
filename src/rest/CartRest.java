@@ -20,9 +20,9 @@ public class CartRest {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/add/{id}")
-	public void addToCart(@PathParam("id") Long id) {
-    		cartBean.addToCart(id);
+    @Path("/add/{id}/user/{user_id}")
+	public void addToCart(@PathParam("id") Long id, @PathParam("user_id") Long user_id) {
+    		cartBean.addToCart(id, user_id);
     }
     
     @GET
@@ -34,15 +34,15 @@ public class CartRest {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/checkout")
-	public List<ProductDTO> getCart() {
-    		return cartBean.getCart();
+    @Path("/checkout/{user_id}")
+	public List<ProductDTO> getCart(@PathParam("user_id") Long user_id) {
+    		return cartBean.getCart(user_id);
     }
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/delete/{id}")
-    public void removeFromCart(@PathParam("id") Long id) {
-    		cartBean.removeFromCart(id);
+    @Path("/delete/{id}/user/{user_id}")
+    public void removeFromCart(@PathParam("id") Long id, @PathParam("user_id") Long user_id) {
+    		cartBean.removeFromCart(id, user_id);
     }
 }

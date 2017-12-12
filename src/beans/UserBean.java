@@ -39,21 +39,7 @@ public class UserBean implements IUserBean{
 	}
 	
 	@Override
-	public UserDTO login(String email, String password) {
-		
-		Query q1 = entityManager.createQuery("select x from User x where x.logged=true");
-		List<User> resultList = (List<User>)q1.getResultList();
-		for (User u1 : resultList) {
-			u1.setLogged(null);
-			entityManager.persist(u1);
-		}
-//		UserDTO userDTO1 = new UserDTO();
-//		userDTO1.setId(u1.getId());
-//		userDTO1.setEmail(u1.getEmail());
-//		userDTO1.setName(u1.getName());
-//		userDTO1.setLogged(false);
-//		entityManager.persist(u1);
-		
+	public UserDTO login(String email, String password) {		
 		Query q = entityManager.createQuery("select x from User x where x.email=:email and x.password=:password");
 		q.setParameter("email", email);
 		q.setParameter("password", password);
@@ -69,7 +55,7 @@ public class UserBean implements IUserBean{
 	}
     
 	
-	public UserDTO isOnline() {
+	public List<UserDTO> isOnline() {
 		Query q1 = entityManager.createQuery("select x from User x where x.logged=true");
 		
 		ArrayList<UserDTO> onlineUsers = new ArrayList<UserDTO>(); 
@@ -85,23 +71,11 @@ public class UserBean implements IUserBean{
 			onlineUsers.add(userDTO1);
 		}
 		
-		return onlineUsers.get(0);
+		return onlineUsers;
 	}
 	
 	@Override
-	public void register(String email,  String password) {
-//		Query q = entityManager.createQuery
-//				("insert into users (email, password) "
-//						+ "values(email, password)");
-//		q.setParameter("email", email);
-//		q.setParameter("password", password);
-//		User u = (User) q.getSingleResult();
-//		UserDTO userDTO = new UserDTO();
-//		userDTO.setId(u.getId());
-//		userDTO.setEmail(u.getEmail());
-//		userDTO.setName(u.getName());
-//		userDTO.setLogged(false);
-		
+	public void register(String email,  String password) {		
 		User x = new User(email, password);
 		entityManager.persist(x);
 	}
@@ -114,11 +88,6 @@ public class UserBean implements IUserBean{
 		q.setParameter("email", email);
 		User u = (User) q.getSingleResult();
 		u.setLogged(null);
-//		UserDTO userDTO = new UserDTO();
-//		userDTO.setId(u.getId());
-//		userDTO.setEmail(u.getEmail());
-//		userDTO.setName(u.getName());
-//		userDTO.setLogged(false);
 		entityManager.persist(u);
 	}
 

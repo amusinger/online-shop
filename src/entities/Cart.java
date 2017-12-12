@@ -21,6 +21,17 @@ public class Cart{
     
     @Column(name="product_id", nullable = false)
     private Long productID;
+    
+    @Column(name="quantity", nullable = true)
+    private Long quantity;
+
+	public Long getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
+	}
 
 	public Long getId() {
 		return id;

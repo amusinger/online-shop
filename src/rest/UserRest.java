@@ -24,7 +24,7 @@ public class UserRest {
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     @Path("/online")
-	public UserDTO isOnline() {
+	public List<UserDTO> isOnline() {
     		return userBean.isOnline();
     }
     

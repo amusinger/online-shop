@@ -27,8 +27,8 @@ public class CartBean implements ICartBean{
     
 
 	@Override
-	public void addToCart(Long id) {
-    		Cart cart = checkUserAndCart(id);
+	public void addToCart(Long id, Long user_id) {
+    		Cart cart = checkUserAndCart(id, user_id);
 		entityManager.persist(cart);   				
 	}
 	
@@ -39,28 +39,37 @@ public class CartBean implements ICartBean{
 		return count;
 	}
 
-	private Cart checkUserAndCart(Long id) {
+	private Cart checkUserAndCart(Long id, Long user_id) {
 		// TODO Auto-generated method stub
-     	Query q = entityManager.createQuery("select x from User x where x.logged=true");
-     	User res = (User) q.getSingleResult();
-     	UserDTO u = new UserDTO();
-		u.setId(res.getId());
-		u.setEmail(res.getEmail());
-		u.setName(res.getName());
-		u.setPassword(res.getPassword());
-		u.setLogged(res.getLogged());
+//     	Query q = entityManager.createQuery("select x from User x where x.id=:user_id");
+//     	q.setParameter("user_id", user_id);
+//     	User res = (User) q.getSingleResult();
+//     	UserDTO u = new UserDTO();
+//		u.setId(res.getId());
+//		u.setEmail(res.getEmail());
+//		u.setName(res.getName());
+//		u.setPassword(res.getPassword());
+//		u.setLogged(res.getLogged());
 		
-     	System.out.println(id);
-		Cart cart = new Cart();
-		cart.setProductID(id);
-		cart.setUseriD(u.getId());
-	
-		return cart;
+		try {
+			Query q2 = entityManager.createQuery("select x from Cart x where x.useriD=:id and x.productID=:prodID");
+			q2.setParameter("id", user_id);
+			q2.setParameter("prodID", id);
+			Cart resultList = (Cart)q2.getSingleResult();
+			resultList.setQuantity(resultList.getQuantity()+1);
+			return resultList;	
+		} catch (Exception e) {
+			Cart cart = new Cart();
+			cart.setProductID(id);
+			cart.setUseriD(user_id);
+			cart.setQuantity((long) 1);
+			return cart;	
+		}
 	}
 
 
 	@Override
-	public List<ProductDTO> getCart() {
+	public List<ProductDTO> getCart(Long user_id) {
 		// TODO Auto-generated method stub
 		Query q1 = entityManager.createQuery("select x from User x where x.logged=true");
 		User res = (User) q1.getSingleResult();
@@ -78,9 +87,10 @@ public class CartBean implements ICartBean{
 
 
 		@Override
-	public void removeFromCart(Long id) {
+	public void removeFromCart(Long id, Long user_id) {
 		// TODO Auto-generated method stub
-	     	Query q = entityManager.createQuery("select x from User x where x.logged=true");
+	     	Query q = entityManager.createQuery("select x from User x where x.user_id=:id");
+	     	q.setParameter("id", user_id);
 	     	User res = (User) q.getSingleResult();
 	     	UserDTO u = new UserDTO();
 			u.setId(res.getId());
