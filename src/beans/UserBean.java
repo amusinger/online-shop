@@ -1,28 +1,40 @@
 package beans;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import dto.OrderDTO;
-import dto.ProductDTO;
 import dto.UserDTO;
-import entities.Order;
-import entities.Product;
 import entities.User;
 
 @Stateless
 @LocalBean
 public class UserBean implements IUserBean{
 
+	
 	@PersistenceContext(unitName="entityManager")
 	private EntityManager entityManager;
 
+	public UserDTO getUserByID(Long id) {
+		Query q1 = entityManager.createQuery("select x from User x where x.id=:id");
+		q1.setParameter("id", id);
+		User resultList = (User)q1.getSingleResult();
+		
+		UserDTO userDTO1 = new UserDTO();
+		userDTO1.setId(resultList.getId());
+		userDTO1.setEmail(resultList.getEmail());
+		userDTO1.setName(resultList.getName());
+		userDTO1.setLogged(true);
+				
+		return userDTO1;
+	}
 	
 	public List<UserDTO> getAllUsers() {		
 		List<User> users = (List<User>)entityManager.createQuery("select p from User p", User.class).getResultList();
@@ -75,10 +87,12 @@ public class UserBean implements IUserBean{
 	}
 	
 	@Override
-	public void register(String email,  String password) {		
+	public void register(String email,  String password) {	
+		
 		User x = new User(email, password);
 		entityManager.persist(x);
 	}
+
     
 
 	@Override

@@ -10,7 +10,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import beans.CategoryBean;
-import beans.ProductBean;
 import dto.CategoryDTO;
 import dto.ProductDTO;
 

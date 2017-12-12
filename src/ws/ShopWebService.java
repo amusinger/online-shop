@@ -10,6 +10,7 @@ import beans.CartBean;
 import beans.OrderBean;
 import beans.ProductBean;
 import beans.UserBean;
+import dto.CartProductDTO;
 import dto.OrderDTO;
 import dto.ProductDTO;
 import dto.UserDTO;
@@ -75,8 +76,8 @@ public class ShopWebService {
 	}
 	
 	@WebMethod
-	public List<OrderDTO> viewOrders() {
-		return orderBean.viewOrders();
+	public List<OrderDTO> viewOrders(Long user_id) {
+		return orderBean.viewOrders(user_id);
 				
 	}
 	
@@ -87,7 +88,7 @@ public class ShopWebService {
 	
 	
 	@WebMethod
-	public List<ProductDTO> getCart(Long user_id) {
+	public List<CartProductDTO> getCart(Long user_id) {
 		return cartBean.getCart(user_id);
 	}
 	

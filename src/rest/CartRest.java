@@ -10,7 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import beans.CartBean;
-import dto.ProductDTO;
+import dto.CartProductDTO;
 
 @Path("/carts")
 public class CartRest {
@@ -27,15 +27,15 @@ public class CartRest {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/count/")
-	public Long countCart() {
-    		return cartBean.countCart();
+    @Path("/count/{user_id}")
+	public Long countCart(@PathParam("user_id") Long user_id) {
+    		return cartBean.countCart(user_id);
     }
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/checkout/{user_id}")
-	public List<ProductDTO> getCart(@PathParam("user_id") Long user_id) {
+	public List<CartProductDTO> getCart(@PathParam("user_id") Long user_id) {
     		return cartBean.getCart(user_id);
     }
     

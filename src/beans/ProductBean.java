@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import dto.ProductDTO;
+import entities.Cart;
 import entities.Product;
 
 @Stateless
@@ -56,6 +57,26 @@ public class ProductBean implements IProductBean{
 		return prod;
 	}
 
+	public void addProduct(String title, String desc, String img, String price, String cat_id) {
+		
+		int p = Integer.parseInt(price);
+		int c = Integer.parseInt(cat_id);
+		Product prod = new Product();
+		prod.setTitle(title);
+		prod.setDescription(desc);
+		prod.setImage(img);
+		prod.setPrice((long) p);
+		prod.setCategoryID((long) c);
+		entityManager.persist(prod); 
+		
+	}
+	
+	public void deleteProduct(String id) {
+		Query q = entityManager.createQuery("select x from Product x where x.id=:id");
+		q.setParameter("id", id);
+		Product p = (Product) q.getSingleResult();
+		entityManager.remove(p);
+	}
 
 	@Override
 	public List<ProductDTO> searchProductByName(String name) {

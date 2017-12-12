@@ -32,6 +32,10 @@ public class MainServlet extends HttpServlet {
 
 		request.setAttribute("products", productRest.getAllProducts());
 		getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+		
+		String id = request.getParameter("deleteID");
+        productRest.deleteProduct(id);
+        
 	}
 
 	/**

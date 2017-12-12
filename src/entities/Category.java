@@ -17,9 +17,6 @@ public class Category{
     
     @Column(name="name", nullable = false)
     private String name;
-    
-//    @Column(name="product_id", nullable = false)
-//    private Long productID;
 
 	public Long getId() {
 		return id;
@@ -36,15 +33,4 @@ public class Category{
 	public void setName(String name) {
 		this.name = name;
 	}
-
-//	public Long getProductID() {
-//		return productID;
-//	}
-//
-//	public void setProductID(Long productID) {
-//		this.productID = productID;
-//	}
-
-
-
 }

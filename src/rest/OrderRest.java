@@ -28,9 +28,9 @@ public class OrderRest {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/view/all")
-	public List<OrderDTO> viewOrders() {
-    		return orderBean.viewOrders();
+    @Path("/view/all/{user_id}")
+	public List<OrderDTO> viewOrders(@PathParam("user_id") Long user_id) {
+    		return orderBean.viewOrders( user_id);
     }
     
     @GET

@@ -8,7 +8,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import beans.UserBean;
 import dto.UserDTO;
@@ -19,7 +18,12 @@ public class UserRest {
    @EJB
     UserBean userBean;
 	    
-
+   @Produces(MediaType.APPLICATION_JSON)
+   @GET
+   @Path("/get/{id}")
+	public UserDTO getUserByID(@PathParam("id")Long id) {
+   		return userBean.getUserByID(id);
+   }
     
     @Produces(MediaType.APPLICATION_JSON)
     @GET
