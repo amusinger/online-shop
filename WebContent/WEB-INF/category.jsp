@@ -15,7 +15,7 @@
 		<h3>Categories</h3>
 		
 			
-	<div class="prods">
+	<div class="wrapper">
 	<c:forEach var="a" items="${categories}">
 		<div class="card" style="margin-top:10px;margin-bottom:10px;">
 		  <div class="card-header">${a.categoryName}</div>

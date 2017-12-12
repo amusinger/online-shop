@@ -128,5 +128,19 @@ public class OrderBean implements IOrderBean{
 		}
 		return prodsInOrder;
 	}
+	
+	public List<OrderDTO> getAllOrders() {
+		List<Order> resultList = (List<Order>)entityManager.createQuery("select p from Order p", Order.class).getResultList();	
+		ArrayList<OrderDTO> prodsInOrder = new ArrayList<OrderDTO>(); 
+		for (Order order : resultList) {
+			OrderDTO product = new OrderDTO();
+			product.setId(order.getId());
+			product.setProduct_id(order.getProductID());
+			product.setUser_id(order.getUserID());
+			product.setAddress(order.getAddress());
+			prodsInOrder.add(product);
+		}
+		return prodsInOrder;
+	}
 
 }

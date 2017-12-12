@@ -13,6 +13,18 @@
 	<%@include file="header.jsp" %>
 	<div class="container">
 		<h3>Orders</h3>
+			<div class="wrapper">
+	<c:forEach var="a" items="${orders}">
+		<div class="card" style="margin-top:10px;margin-bottom:10px;">
+		  <div class="card-header">Order: ${a.id}</div>
+		  <div class="card-body">
+		    <h4 class="card-title">ProductID: ${a.product_id}</h4>
+		    <p class="card-text">UserID: ${a.user_id} </p>
+		    <p class="card-text">Address: ${a.address} </p>
+		 </div>
+		</div>
+	</c:forEach>
+	</div>
 	</div>
 </body>
 </html>

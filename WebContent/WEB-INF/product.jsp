@@ -16,7 +16,7 @@
 		<h3>Products</h3>
 		
 			
-	<div class="prods">
+	<div class="wrapper">
 	<c:forEach var="a" items="${products}">
 		<div class="card" style="margin-top:10px;margin-bottom:10px;">
 		  <div class="card-header">${a.title}</div>

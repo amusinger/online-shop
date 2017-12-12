@@ -16,7 +16,7 @@
 		<h3>Users</h3>
 	
 	
-		<div class="prods">
+		<div class="wrapper">
 	<c:forEach var="a" items="${users}">
 		<div class="card" style="margin-top:10px;margin-bottom:10px;">
 		  <div class="card-header">${a.email}</div>

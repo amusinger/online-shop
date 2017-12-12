@@ -31,6 +31,13 @@ public class OrderRest {
     @Path("/view/all")
 	public List<OrderDTO> viewOrders() {
     		return orderBean.viewOrders();
-    }  
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/view/all/admin")
+	public List<OrderDTO> getAllOrders() {
+		return orderBean.getAllOrders();
+} 
 	
 }
