@@ -68,10 +68,91 @@
 
 <script>
 $('.carousel').carousel({
-	  interval: 5000
+	  interval: 3000
 	})
 </script>
 
+	
+	<script>
+	
+	
+	
+/* 	$(document).ready(function(){
+	 function check(id)
+     {  
+		console.log(id)
+		var urlGet = "http://localhost:8080/OnlineShopProject/api/products/delete/"+ id;
+		Jquery.ajax({
+		url: urlGet,
+		type: "GET",
+		
+		success: function() {
+		  alert("success");
+		},
+		
+		error: function() {
+		  alert( "Sorry, there was a problem!" );
+		}
+		});           
+     }  
+	} */
+	
+/* 
+	    $(document).ready(function() {                        
+	        $('#delete').click(function(event) {  
+	            var id=$('#delete').val();
+	            console.log(id);
+	         $.get('MainServlet',{deleteID:id},function(responseText) { 
+	                $('#welcometext').text(responseText);         
+	            });
+	        }); */
+	        
+	        function check(id){
+	    		console.log('delelelelle')
+var urlGet = "http://localhost:8080/OnlineShopProject/api/products/delete/" + id ;
+	        
+	    		var xhr = new XMLHttpRequest();
+
+	    		
+	    		xhr.open('GET', urlGet, false);
+
+	    		// 3. Отсылаем запрос
+	    		xhr.send();
+	    		
+	    		location.reload();
+
+/* 	         $.get(
+	        		 urlGet,
+	        		 {},
+	        		 null); */
+	    }
+
+	        $(document).ready(function(){
+	    	    $("#delete").click(function(){
+	    	    	var form = $('#form1');
+	    	    	console.log(form);
+	    	 
+	    	    	var urlGet = "http://localhost:8080/OnlineShopProject/api/products/delete/" ;
+	    	        
+	    	        form.submit(function () {
+
+	    	         $.ajax({
+	    	         type: "GET",
+	    	         url: urlGet,
+	    	         success: function (data) {
+	    	         var result=data;
+	    	         $('#result').attr("value",result);
+	    	         }
+	    	         });
+	    	         return false;
+	    	         });
+	    	    });
+
+
+	    	    
+	    	});
+	        
+	</script>
 <div class="wrapper row">
 	<c:forEach var="a" items="${products}">
 
@@ -82,29 +163,14 @@ $('.carousel').carousel({
 		    <h4 class="card-title">${a.title}</h4>
 		    <h6 class="card-subtitle mb-2 text-muted">${a.price}</h6>
 		    <p class="card-text">${a.description}</p>
-		   <input type="button" class="btn" name="delete" value="Delete" value=${a.id} id=delete onclick="delete(${a.id})"/>
+			<input type="button" class="btn btn-primary" name="delete" value="Delete" id="delete" onclick="check(${a.id})"/> 
+		  
 		  </div>
 		</div>
 		
 		
 	</c:forEach>
-	
-	<script>
 
-
-    $(document).ready(function() {                        
-        $('#delete').click(function(event) {  
-            var id=$('#delete').val();
-            console.log(id);
-         $.get('MainServlet',{deleteID:id},function(responseText) { 
-                $('#welcometext').text(responseText);         
-            });
-        });
-    });
-
-	
-	
-	</script>
 	</div>
 
   </div>  

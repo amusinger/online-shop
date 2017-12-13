@@ -66,8 +66,7 @@
 	<script>
 	$(document).ready(function(){
 	    $("button").click(function(){
-	 
-	        
+  
 	        var form = $('#form1');
 	        form.submit(function () {
 

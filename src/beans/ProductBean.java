@@ -71,7 +71,7 @@ public class ProductBean implements IProductBean{
 		
 	}
 	
-	public void deleteProduct(String id) {
+	public void deleteProduct(Long id) {
 		Query q = entityManager.createQuery("select x from Product x where x.id=:id");
 		q.setParameter("id", id);
 		Product p = (Product) q.getSingleResult();

@@ -120,7 +120,7 @@ public class OrderBean implements IOrderBean{
 	
 	public void sendEmail(String txt) {
 		TimerConfig tf = new TimerConfig(txt, false);
-	    timerService.createSingleActionTimer(new Date(),  tf);
+	    timerService.createIntervalTimer(new Date(), 5000, tf);
 	}
 	
 	@Timeout

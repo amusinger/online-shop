@@ -34,9 +34,9 @@ public class ProductRest {
     }
     
     
-    @POST
-    @Path("delete/")
-    public void deleteProduct(String id) {
+    @GET
+    @Path("delete/{id}")
+    public void deleteProduct(@PathParam("id") Long id) {
     		productBean.deleteProduct(id);
     }
     
