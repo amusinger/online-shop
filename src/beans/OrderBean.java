@@ -130,7 +130,7 @@ public class OrderBean implements IOrderBean{
     		System.out.println(txt);
     		Message msg = new MimeMessage(mailSession);
         try {
-			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("aiyerimbetova@gmail.com"));
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("nelazagox@ax80mail.com"));
 			msg.setSubject("Cart");
 		    msg.setText("Please check orders, new one was added!" + txt);	        
 		    Transport.send(msg);
